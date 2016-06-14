@@ -19,6 +19,7 @@ range deletion看名字就知道是为了加快delete/unlink的设计。思路�
 
 ![rename](image/rename.png)
 ![large-io](image/large-io.png)
+
 在以前是短板的unlink上，Betrfs 0.2反而由于zone和range delete的设计而变得比其他文件系统更快了。
 
 ![unlink](image/unlink.png)
