@@ -26,7 +26,7 @@ Designing Distributed Systems Using Approximate Synchrony in Data Center Network
 
 基于这一MOM的网络，作者提出了speculative paxos的算法。Client通过invoke（）直接向需要replication的group发送multicast。在通常情况下，server处于normal状态，对client的请求进行speculativelyExecute，对操作记录sequence number，将操作进行log并且标记为speculative，然后将结果发送给client。这个结果里面也包括当前服务器的summary hash 
 
-<center>summary<sub>n</sub> = H(summary<sub>n</sub>−1 || operation<sub>n</sub>)</center>
+	summary_n = H(summary_n−1 || operation_n)
 
 如果两个summary相同，我们可以认为这两个服务器具有相同的操作历史。Client在接收到super quorum的结果后开始比较大家的summary，如果summary都相同，则认为该操作已经成功，向invoke返回结果。在这一过程中，只有两轮的消息传输，而且消息直接通过client和server，不存在bottleneck，可以说是达到了最优的情况。
 
